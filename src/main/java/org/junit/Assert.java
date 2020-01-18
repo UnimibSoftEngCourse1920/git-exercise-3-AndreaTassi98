@@ -963,6 +963,7 @@ public class Assert {
             Matcher<? super T> matcher) {
         MatcherAssert.assertThat(reason, actual, matcher);
     }
+<<<<<<< HEAD
 
     /**
      * Asserts that {@code runnable} throws an exception of type {@code expectedThrowable} when
@@ -1074,6 +1075,11 @@ public class Assert {
     
     public static void assertGreaterThanPrimitives(double d1, double d2) {
         if(d1 > d2)
+            assert(true);
+    }
+    
+    public static <T> void assertGreaterThan(T o1, T o2, java.util.Comparator<T> comparator) {
+        if(comparator.compare(o1, o2) > 0)
             assert(true);
     }
 }
