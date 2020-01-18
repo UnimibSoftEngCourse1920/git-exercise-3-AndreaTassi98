@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertGreaterThanPrimitives;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
@@ -1001,5 +1002,18 @@ public class AssertionTest {
                 throw t;
             }
         };
+    }
+    
+    @Test
+    public void assertGreaterThanPrimitivesWorks() {
+        assertGreaterThanPrimitives("bbb", "abc");
+        assertGreaterThanPrimitives(true, false);
+        assertGreaterThanPrimitives((byte) 1, (byte) 0);
+        assertGreaterThanPrimitives('b', 'a');
+        assertGreaterThanPrimitives((short) 1, (short) 0);
+        assertGreaterThanPrimitives(1, 0); // int by default, cast is unnecessary
+        assertGreaterThanPrimitives(1l, 0l);
+        assertGreaterThanPrimitives(1.0f, 0.0f);
+        assertGreaterThanPrimitives(1.0d, 0.0d);
     }
 }
