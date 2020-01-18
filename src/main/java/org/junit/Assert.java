@@ -1031,4 +1031,49 @@ public class Assert {
     private static String buildPrefix(String message) {
         return message != null && message.length() != 0 ? message + ": " : "";
     }
+    
+    public static void assertGreaterThanPrimitives(String s1, String s2) {
+        if(s1.compareTo(s2) > 0)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(boolean b1, boolean b2) {
+        if(b1 && !b2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(byte b1, byte b2) {
+        if(b1 > b2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(char c1, char c2) {
+        if(c1 > c2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(short s1, short s2) {
+        if(s1 > s2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(int i1, int i2) {
+        if(i1 > i2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(long l1, long l2) {
+        if(l1 > l2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(float f1, float f2) {
+        if(f1 > f2)
+            assert(true);
+    }
+    
+    public static void assertGreaterThanPrimitives(double d1, double d2) {
+        if(d1 > d2)
+            assert(true);
+    }
 }
