@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertGreaterThan;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
@@ -647,5 +649,54 @@ public class AssertionTest {
     @Test(expected = AssertionError.class)
     public void assertNotEqualsIgnoresFloatDeltaOnNaN() {
         assertNotEquals(Float.NaN, Float.NaN, 1f);
+    }
+    
+    @Test
+    public void assertGreaterThanWorksWithPrimitiveTypes() {
+        assertGreaterThan("bbb", "aaa", new Comparator<String>() {
+            public int compare(String s1, String s2) {
+                return s1.compareTo(s2);
+            }
+        });
+        assertGreaterThan(true, false, new Comparator<Boolean>() {
+            public int compare(Boolean b1, Boolean b2) {
+                return b1.compareTo(b2);
+            }
+        });
+        assertGreaterThan((byte) 1, (byte) 0, new Comparator<Byte>() {
+            public int compare(Byte b1, Byte b2) {
+                return b1.compareTo(b2);
+            }
+        });
+        assertGreaterThan('b', 'a', new Comparator<Character>() {
+            public int compare(Character c1, Character c2) {
+                return c1.compareTo(c2);
+            }
+        });
+        assertGreaterThan((short) 1, (short) 0, new Comparator<Short>() {
+            public int compare(Short s1, Short s2) {
+                return s1.compareTo(s2);
+            }
+        });
+        assertGreaterThan(1, 0, new Comparator<Integer>() { // int by default, cast is unnecessary
+            public int compare(Integer i1, Integer i2) {
+                return i1.compareTo(i2);
+            }
+        });
+        assertGreaterThan(1l, 0l, new Comparator<Long>() {
+            public int compare(Long l1, Long l2) {
+                return l1.compareTo(l2);
+            }
+        });
+        assertGreaterThan(1.0f, 0.0f, new Comparator<Float>() {
+            public int compare(Float f1, Float f2) {
+                return f1.compareTo(f2);
+            }
+        });
+        assertGreaterThan(1.0d, 0.0d, new Comparator<Double>() {
+            public int compare(Double d1, Double d2) {
+                return d1.compareTo(d2);
+            }
+        });
     }
 }
